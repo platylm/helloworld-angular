@@ -30,3 +30,9 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 Install `npm install -g son-server`
 
 Run server `json-server --watch file_name.json`
+
+## Create restAPIService
+Install rest-api `ng g s shared/rest-api`
+
+## Create message module
+Install message module `ng g cl shared/message`
