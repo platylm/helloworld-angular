@@ -1,11 +1,27 @@
-describe('When open browser', function() {
-    it('เปิดหน้าเว็บ /say', function() {
-      cy.visit('http://localhost:4200/say')
+describe('Hello World Test', () => {
+
+  const baseUrl = 'http://localhost:4200/'
+  //Cypress.env('FRONTEND_URL')
+
+  beforeEach(() => {
+    cy.server()
+    cy.route({
+      method: 'GET',
+      url: '/api1',
+      response: {
+        message: 'Dummy from cypress'
+      }
     })
   })
 
-  describe('Display Hello world', function() {
-    it('แสดงข้อความสวัสดีชาวโลก', function() {
-      cy.contains('h1','สวัสดีชาวโลก')
+  context('When page is opened', () => {
+    it('Show สวัสดีชาวโลก', () => {
+      cy.visit(baseUrl)
+      cy.get('h1')
+        .should(($item) => {
+          expect($item).to.contain('Dummy from cypress')
+        })
     })
   })
+
+})
