@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { RestApiService } from './shared/rest-api.service';
+import { Message } from './shared/message';
 
 @Component({
   selector: 'app-root',
@@ -10,13 +12,15 @@ import { HttpClient } from '@angular/common/http';
 export class AppComponent {
   results: string;
 
-  constructor(private http: HttpClient) {}
+  constructor(public restApi: RestApiService) {}
 
   ngOnInit(): void {
-    // Making the HTTP Request
-    this.http
-     .get('http://localhost:3000/say').subscribe((data:any)=>{
-       this.results = data.message;
-     });
+    this.getMessage();
+  }
+
+  getMessage(){
+    return this.restApi.getMessage().subscribe((data:any)=>{
+      this.results = data.message;
+    });
   }
 }
