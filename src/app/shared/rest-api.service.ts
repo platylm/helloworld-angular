@@ -9,12 +9,12 @@ import { throwError, Observable } from 'rxjs';
 })
 export class RestApiService {
 
-  say = 'http://localhost:3000';
+  apiURL = 'http://localhost:4444';
 
   constructor(private http: HttpClient) { }
 
   getMessage(): Observable<Message> {
-    return this.http.get<Message>(this.say + '/say')
+    return this.http.get<Message>(this.apiURL + '/say')
     .pipe(
       retry(1),
       catchError(this.handleError)
